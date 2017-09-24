@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+	   default-lazy-init="true">
+
+	<description>restful</description>
+
+	<!--创建httpclient的连接池 -->
+	<bean id="httpClientConnectionManager"
+		  class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager"
+		  destroy-method="shutdown">
+		<!-- 设置最大连接数 -->
+		<property name="maxTotal" value="100" />
+		<!-- 设置每个主机的并发数 -->
+		<property name="defaultMaxPerRoute" value="50" />
+	</bean>
+
+	<!-- 创建httpClient对象 -->
+	<!-- httpClient是由HttpClientBuilder通过build方法创建，这个可以设置连接池 -->
+	<!-- 1.创建HttpClientBuilder -->
+	<bean id="httpClientBuilder" class="org.apache.http.impl.client.HttpClientBuilder">
+		<!--设置连接池 -->
+		<property name="connectionManager" ref="httpClientConnectionManager"></property>
+	</bean>
+
+	<!-- 2.创建httpClient -->
+	<!-- 通过httpClientBulider得到httpClient对象，并且设置httpClient为多利模式 -->
+	<!-- 要保证httpClient为多利，以为每次都是新的http请求 -->
+	<bean id="httpClient" class="org.apache.http.impl.client.CloseableHttpClient"
+		  factory-bean="httpClientBuilder" factory-method="build" scope="prototype" />
+
+</beans>

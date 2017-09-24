@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doubleant.externalws.log.dao.ExternalLogDao">
+
+	<resultMap id="BaseResultMap"  type="com.doubleant.externalws.log.po.ExternalLogPO">
+		<id property="id" column="id" jdbcType="BIGINT" />
+		<result property="reqNo" column="req_no" jdbcType="VARCHAR" />
+		<result property="methodName" column="method_name" jdbcType="TINYINT" />
+		<result property="source" column="source" jdbcType="VARCHAR" />
+		<result property="requestTime" column="request_time" jdbcType="TIMESTAMP" />
+		<result property="responseTime" column="response_time" jdbcType="TIMESTAMP" />
+		<result property="useTime" column="use_time" jdbcType="BIGINT" />
+		<result property="rstCode" column="rst_code" jdbcType="VARCHAR" />
+		<result property="rstMsg" column="rst_msg" jdbcType="VARCHAR" />
+		<result property="errMsg" column="err_msg" jdbcType="VARCHAR" />
+		<result property="createTime" column="create_time" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List" >
+		id,
+		req_no,
+		method_name,
+		source,
+		request_time,
+		response_time,
+		use_time,
+		rst_code,
+		rst_msg,
+		err_msg,
+		create_time
+	</sql>
+
+	<insert id="insert" parameterType="com.doubleant.externalws.log.po.ExternalLogPO" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_externalws_log (
+		req_no,
+		method_name,
+		source,
+		request_time,
+		response_time,
+		use_time,
+		rst_code,
+		rst_msg,
+		err_msg,
+		create_time
+		) VALUES (
+			#{reqNo,jdbcType=VARCHAR},
+			#{methodName,jdbcType=VARCHAR},
+			#{source,jdbcType=VARCHAR},
+			#{requestTime,jdbcType=TIMESTAMP},
+			#{responseTime,jdbcType=TIMESTAMP},
+			#{useTime,jdbcType=BIGINT},
+			#{rstCode,jdbcType=VARCHAR},
+			#{rstMsg,jdbcType=VARCHAR},
+			#{errMsg,jdbcType=VARCHAR},
+			NOW()
+		)
+	</insert>
+</mapper> 

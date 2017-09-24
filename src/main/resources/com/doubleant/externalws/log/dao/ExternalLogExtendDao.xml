@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doubleant.externalws.log.dao.ExternalLogExtendDao">
+
+	<resultMap id="BaseResultMap"  type="com.doubleant.externalws.log.po.ExternalLogExtendPO">
+		<id property="id" column="id" jdbcType="BIGINT" />
+		<result property="requestMsg" column="request_msg" jdbcType="VARCHAR" />
+		<result property="responseMsg" column="response_msg" jdbcType="VARCHAR" />
+		<result property="createTime" column="create_time" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		id,
+		request_msg,
+		response_msg,
+		create_time
+	</sql>
+
+	<insert id="insert" parameterType="com.doubleant.externalws.log.po.ExternalLogExtendPO">
+		INSERT INTO t_externalws_log_extend (
+		id,
+		request_msg,
+		response_msg,
+		create_time
+		) VALUES (
+		#{id,jdbcType=TINYINT},
+		#{requestMsg,jdbcType=VARCHAR},
+		#{responseMsg,jdbcType=VARCHAR},
+		NOW()
+		)
+	</insert>
+</mapper> 
