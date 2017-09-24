@@ -8,7 +8,7 @@
 		<relativePath>../finance-parent/pom.xml</relativePath>
 	</parent>
 	<groupId>com.kingdee.finance</groupId>
-	<artifactId>doubleant-externalws-api</artifactId>
+	<artifactId>doubleant-external</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -247,7 +247,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<!-- 重命名 -->
-					<warName>doubleant-externalws</warName>
+					<warName>doubleant-external</warName>
 				</configuration>
 			</plugin>
 		</plugins>
